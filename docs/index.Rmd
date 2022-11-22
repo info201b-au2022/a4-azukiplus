@@ -43,7 +43,7 @@ To help answer some of the overarching questions, here are some numbers from the
 Some more interesting values to look at that are harder to see from just graphs of the data are how often there was a change in gender populations in jails where the female incarcerated population was greater than the male incarcerated population. To see this, we can split the data up into 24-year-long groups, one from 1970-1994, and the other from 1995-2018. The number of jails with **more female prisoners from 1970-1994** was `r summary_list$more_female_before`. The number of jails with **more female prisoners from 1995-2018** was `r summary_list$more_female_recent`. 
 
 # Growth of the U.S. Prison Population
-```{r, echo=FALSE}
+```{r, echo=FALSE, out.width="100%"}
 plot_jail_pop_for_us()
 ```
 
@@ -53,7 +53,7 @@ The above graph shows the growth of the U.S. prison population from 1970 to 2018
 
 
 # Growth of West Coast states' Prison Population
-```{r, echo=FALSE}
+```{r, echo=FALSE, out.width="100%"}
 plot_jail_pop_for_states(c("WA", "CA", "OR"))
 ```
 
@@ -61,7 +61,7 @@ plot_jail_pop_for_states(c("WA", "CA", "OR"))
 The above graph shows the growth of the U.S. prison population from 1970 to 2018, but grouped by state. This graph also shows that the prison population increased overall in this date range. The trends are also very similar to the overall population. From 1970 until about 1980, the population starts off relatively stable with no significant slope. From there, the population increases significantly until about 1988. From 1988 to about 2008, the population continues to increase, but at a slower rate than it was increasing at from the previous period. Then, the population remains about constant with a few dips, but no other major changes.
 
 # Analyzing Gender Differences Across Prison Populations
-```{r, echo=FALSE}
+```{r, echo=FALSE, out.width="100%"}
 plot_year_gender_jail_ratio()
 ```
 
@@ -69,7 +69,7 @@ plot_year_gender_jail_ratio()
 The above graph shows the relationship between female incarcerated populations and male incarcerated populations from 1970 to 2018. The overall trend is that the ratio of female incarcerated people is increasing. There is an overall positive slope trend of this ratio, as seen by how the area of the female incarcerated population is increasing continuously. The graph shows that the population of females has always been (and is continuing to be) higher than populations of males in prison. However, this trend in gender ratios is starting to shrink and there is starting to be a higher ratio of females to males in incarceration. 
 
 # Analyzing Gender Differences Across Prison Populations Geographically
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning = FALSE, out.width="100%"}
 map_year_gender_jail_ratio()
 ```
 
