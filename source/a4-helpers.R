@@ -7,6 +7,7 @@ library(tidyverse)
 #---------------------------------------------------------------------------#
 get_data <- function(num_records=-1) {
   fname <- "~/Documents/info201/data/incarceration_trends.csv"
+  # fname <- "C:/Users/ashle/Documents/info201/data/incarceration_trends.csv"
   df <- read.csv(fname, nrows=num_records)
   return(df)
 }

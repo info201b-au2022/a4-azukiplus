@@ -1,45 +1,77 @@
 ---
-title: "Your A4 Report Title (TODO: Revise title)"
-author: "Your Name"
-date: '2022-11-01'
+title: "Gender Differences in Jail Populations Over the Years"
+author: "Ashley Mochizuki"
+date: '2022-11-21'
 output: html_document
 ---
+
+```{css, echo=FALSE}
+body {
+  background-color: #e6e2dd;
+  color: #373a36;
+  font-family: "Montserrat", Sans-serif;
+}
+
+```
 
 ```{r echo=FALSE, eval=TRUE, message=FALSE}
 source("../source/a4-helpers.R")
 source("../source/analysis.R")
 ```
 
+
 ## Abstract 
-[TODO: Include a short abstract (about 50 words)]
+This report will look at trends in jail populations in the United States from 1970-2018. It is focused on
+the gender balance within jail populations to look for possible continuous trends and differences over the 
+years. It will observe the differences of county populations of women and men to the the incarcerated county
+populations of women and men.
 
-# Test (TODO: Remove before submission!!)
-```{r echo=FALSE}
-q1_string <- test_query1()
-num <- 5
+## Introduction
+This report mainly serves to observe and analyze trends in data about incarcerated people from 1970-2018. The specific questions I am trying to answer are about gender. I want to see:
+
+1. whether the incarcerated **population of certain genders** is higher than populations of other genders 
+2. whether the **past trends** of certain genders possibly being incarcerated more are **continuous with more current trends**
+
+The direct stakeholders impacted by this report are people who choose to read this report since they are directly interacting with the report. One of the indirect stakeholders are the incarcerated people who are included as data in the dataset. These people are indirect stakeholders since they have the right to privacy, which is one of the Envisioning Cards values, and this dataset could potentially be breaching that privacy. 
+
+This also leads me into how the dataset is organized; in the gender information for this dataset, there are only two genders listed. This means that this dataset does not take into account nonbinary people. It groups people as either male or female. This means that this dataset fails to include nonbinary people, which could also make a difference in the findings of this report if the data were to be included. This goes against the Envisioning Cards value of “inclusivity and exclusivity” since nonbinary people are not represented in the dataset at all. If the dataset were to be updated, it should include nonbinary people in the counts because not everyone identifies as a woman or a man. 
+
+
+# Data Summary
+To help answer some of the overarching questions, here are some numbers from the data that are useful. First, we can look at the number of each gender population incarcerated compared to the number of each gender population in a county. The percentage of the **female population** that was incarcerated in **2010** was `r summary_list$avg_female_2010`, while in **2018**, it was `r summary_list$avg_female_2018`. The percentage of the **male population** that was incarcerated in **2010** was `r summary_list$avg_male_2010`, while in **2018**, it was `r summary_list$avg_male_2018`. 
+
+Some more interesting values to look at that are harder to see from just graphs of the data are how often there was a change in gender populations in jails where the female incarcerated population was greater than the male incarcerated population. To see this, we can split the data up into 24-year-long groups, one from 1970-1994, and the other from 1995-2018. The number of jails with **more female prisoners from 1970-1994** was `r summary_list$more_female_before`. The number of jails with **more female prisoners from 1995-2018** was `r summary_list$more_female_recent`. 
+
+# Growth of the U.S. Prison Population
+```{r, echo=FALSE}
+plot_jail_pop_for_us()
 ```
-As you know, this is a markdown report. The [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) is **useful!**
 
-* Here's a test of a dynamic variable. Say **"`r q1_string`!!!** 
-* Here's another test. A vector
-of numbers: `r test_query2(num)`.
 
-Recall that _{r echo=TRUE}_ can be used to display the code, 
-which is very useful when developing and debugging a report. Here's an example: 
+**How does the number of incarcerated people in U.S. prisons change from 1970 to 2018?**
+The above graph shows the growth of the U.S. prison population from 1970 to 2018. It looks like the population starts off relatively stable from 1970 until about 1980, where the population begins to increase. The population increase from 1980 to about 2006 seems to be a linear trend; the slope is mostly stable. From approximately 2016 until 2018, the trend then stabilizes, and the population remains about constant, with a possibly slightly decreasing trendline. 
 
-```{r echo=TRUE}
-num <- 5
-sum <- sum(test_query2(num))
-print(sum)
+
+# Growth of West Coast states' Prison Population
+```{r, echo=FALSE}
+plot_jail_pop_for_states(c("WA", "CA", "OR"))
 ```
 
-## Introduction 
-[TODO]
+**How does the number of incarcerated people in the West Coast states change from 1970 to 2018?**
+The above graph shows the growth of the U.S. prison population from 1970 to 2018, but grouped by state. This graph also shows that the prison population increased overall in this date range. The trends are also very similar to the overall population. From 1970 until about 1980, the population starts off relatively stable with no significant slope. From there, the population increases significantly until about 1988. From 1988 to about 2008, the population continues to increase, but at a slower rate than it was increasing at from the previous period. Then, the population remains about constant with a few dips, but no other major changes.
 
-## Data Summary 
-[TODO]
+# Analyzing Gender Differences Across Prison Populations
+```{r, echo=FALSE}
+plot_year_gender_jail_ratio()
+```
 
-[TODO ... other sections ... See Canvas for details]
+**Are populations of certain genders higher than populations of other genders in incarceration? Are such trends continuous?**
+The above graph shows the relationship between female incarcerated populations and male incarcerated populations from 1970 to 2018. The overall trend is that the ratio of female incarcerated people is increasing. There is an overall positive slope trend of this ratio, as seen by how the area of the female incarcerated population is increasing continuously. The graph shows that the population of females has always been (and is continuing to be) higher than populations of males in prison. However, this trend in gender ratios is starting to shrink and there is starting to be a higher ratio of females to males in incarceration. 
 
-_All the very best with your work!_
+# Analyzing Gender Differences Across Prison Populations Geographically
+```{r, echo=FALSE}
+map_year_gender_jail_ratio()
+```
 
+**Are populations of certain genders higher than populations of other genders in incarceration? Are these trends continuous? Are these trends similar across the U.S. or different depending on geographic location?**
+The above graph shows the relationship between female incarcerated populations and male incarcerated populations from 1970 to 2018 geographically by state. The slider can be used to view the percentage ratio of female to male incarcerated people by state. Looking at the map at 1970, then looking at the map at 2018, the overall trend seems to be that the ratio of incarcerated people gender-wise does not seem to have a clear correlation with geography. However, overall, the trend is that the ratio of female incarcerated people to male incarcerated people is increasing with the exception of a few data points like Alaska in 1970.
